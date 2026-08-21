@@ -19,20 +19,20 @@ export const HERBSTKONZERTE_26: Concert = {
     {
       location: 'Friedenskirche Olten',
       googleMapsLink: 'https://goo.gl/maps/uDNdqBQWePwmsLci9',
-      dateString: '30. Oktober 2026',
-      dateISO: '2026-10-30T00:00:00+01:00',
+      dateString: '30. Oktober 2026 20:00 Uhr',
+      dateISO: '2026-10-30T20:00:00+01:00',
     },
     {
       location: 'Dreifaltigkeitskirche Tann',
       googleMapsLink: 'https://goo.gl/maps/vyJ5oA8gPmJXgQfSA',
-      dateString: '31. Oktober 2026',
-      dateISO: '2026-10-31T00:00:00+01:00',
+      dateString: '31. Oktober 2026 19:00 Uhr',
+      dateISO: '2026-10-31T19:00:00+01:00',
     },
     {
       location: 'St. Peter Zürich',
       googleMapsLink: 'https://goo.gl/maps/x7tZvHs3fYddvpvy9',
-      dateString: '1. November 2026',
-      dateISO: '2026-11-01TT00:00:00+01:00',
+      dateString: '1. November 2026 17:00 Uhr',
+      dateISO: '2026-11-01T17:00:00+01:00',
     },
   ],
   quickLinks: [

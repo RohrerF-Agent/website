@@ -32,7 +32,7 @@ Concert data is stored as static TypeScript files organized by year (`2023/`, `2
 Handles contact form submissions, newsletter signups, and sponsorship signups via Firestore. These modules must only run server-side.
 
 ### Images (`src/images/`)
-All images are `.webp` format. Use `scripts/image.js` (Sharp-based) to convert and optimize new images before adding them to the repo.
+All images are `.webp` format. Use `scripts/image.js` (Bun.Image-based, requires the Bun runtime) to convert and optimize new images before adding them to the repo.
 
 ## Key Constraints
 

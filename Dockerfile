@@ -1,4 +1,4 @@
-FROM oven/bun:alpine AS base
+FROM oven/bun:1.4-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -8,6 +8,8 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 COPY package.json bun.lock* ./
+COPY patches ./patches
+COPY scripts ./scripts
 RUN bun install --frozen-lockfile
 
 # Rebuild the source code only when needed
@@ -27,12 +29,8 @@ ENV NODE_ENV production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
-
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# No output: 'standalone' — copy the full build output (incl. node_modules)
+COPY --from=builder --chown=nextjs:nodejs /app ./
 
 USER nextjs
 
@@ -40,4 +38,4 @@ EXPOSE 80
 
 ENV PORT 80
 
-CMD ["node", "server.js"]
+CMD ["npm", "run", "start"]

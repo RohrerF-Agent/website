@@ -1,36 +1,29 @@
-const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-// Function to convert an image file to webp in different sizes
+// Function to convert an image file to webp at a given width
+// Requires the Bun runtime (Bun.Image, new in Bun 1.4): `bun scripts/image.js <folder>`
 async function convertToWebp(imagePath, width, suffix) {
   try {
-    const img = sharp(imagePath);
+    const img = new Bun.Image(imagePath);
 
-    const {width: metadataWith} = await img.metadata();
+    const {width: metadataWidth} = await img.metadata();
 
     // skip resizing if image is smaller than desired width
-    if (metadataWith > width) {
+    if (metadataWidth > width) {
       img.resize(width);
     }
 
-    // TOOD: strip unused Metadata
+    // TOOD: strip unused metadata — not supported by Bun.Image yet
+    // (EXIF/Copyright tags are dropped on re-encode)
 
     // convert to webP
-    img.webp();
     const {name} = path.parse(imagePath);
     const dir = path.dirname(imagePath);
-    await img
-      .withMetadata({
-        exif: {
-          IFD0: {
-            Copyright: `© ${new Date().getFullYear()} Alle Rechte vorbehalten JSO Crescendo`,
-          },
-        },
-      })
-      .toFile(`${dir}/${name}_${suffix}.webp`);
+    const outPath = `${dir}/${name}_${suffix}.webp`;
+    await img.webp().write(outPath);
     console.log(`Image converted to webp with size: ${width}`);
-    console.log(`${dir}/${name}_${suffix}.webp`);
+    console.log(outPath);
   } catch (err) {
     console.error(`Error converting image to webp: ${err}`);
   }
@@ -72,7 +65,7 @@ async function convertImagesToWebp(folderPath) {
   }
 }
 
-// Usage: node script.js <folder_path>
+// Usage: bun script.js <folder_path>
 const folderPath = process.argv[2]; // Get folder path from command line argument
 
 if (!folderPath) {

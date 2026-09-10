@@ -9,6 +9,9 @@ export const HERBSTKONZERTE_26: Concert = {
   image_sm: Image_sm,
   image_lg: Image_lg,
   showOnHomepage: true,
+  seoDescription:
+    'Das dramatische Oratorium «Jephtha und seine Tochter» von Carl Martin Reinthaler galt lange als vergessen: Anders als in der biblischen Vorlage muss Jephthas Tochter am Ende nicht sterben – das Werk klingt in einem festlichen Lobgesang aus. Zum 20-jährigen Jubiläum des Projektchors Canturicum bringen das JSO Crescendo, Canturicum und die Kantorei Wetzikon das Werk unter der Leitung von Käthi Schmid Lauber auf die Bühne – voraussichtlich in einer schweizerischen Erstaufführung.',
+  descriptionElement: <></>,
   program: [
     {
       name: 'Jephtha und seine Tochter',

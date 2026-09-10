@@ -1,4 +1,5 @@
 import type {Concert} from '../..';
+import Image_lg from './assets/flyer_lg.webp';
 import Image_sm from './assets/flyer_sm.webp';
 
 export const HERBSTKONZERTE_26: Concert = {
@@ -6,6 +7,8 @@ export const HERBSTKONZERTE_26: Concert = {
   name: 'Herbstkonzerte',
   subtitle: 'mit dem Projektchor Canturicum',
   image_sm: Image_sm,
+  image_lg: Image_lg,
+  showOnHomepage: true,
   program: [
     {
       name: 'Jephtha und seine Tochter',
